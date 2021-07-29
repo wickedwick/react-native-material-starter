@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import renderer, { ReactTestRendererJSON } from "react-test-renderer";
 import NotFoundScreen from "../NotFoundScreen";
@@ -11,6 +12,7 @@ describe("<NotFoundScreen />", () => {
         .create(<NotFoundScreen navigation={props} route={routeProps} />)
         .toJSON();
 
-    expect(tree?.children?.length).toBe(2);
+    const json = tree as ReactTestRendererJSON;
+    expect(json?.children?.length).toBe(2);
   });
 });

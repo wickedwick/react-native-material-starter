@@ -3,7 +3,7 @@ export class DefaultFonts {
     this.fontFamily = 'sans-serif';
   }
   fontFamily: string;
-};
+}
 
 export type FontSettings = {
   regular: DefaultFonts;

@@ -1,29 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import Navigation from "./navigation";
-import useCachedResources from "./hooks/useCachedResources";
-import useColorScheme from "./hooks/useColorScheme";
+import { BottomNav } from "./navigation/BottomTabNavigator";
 import { Provider as PaperProvider } from "react-native-paper";
 import theme from "./constants/Theme";
 
-export default function App() {
-  const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
-
+export default function App(): JSX.Element {
   return (
     <PaperProvider theme={theme}>
-      <Navigation colorScheme={colorScheme} />
+      <BottomNav />
       <StatusBar style="auto" />
     </PaperProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

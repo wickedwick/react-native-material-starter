@@ -1,41 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
-import Film from "../components/Film";
-import { FilmData } from "../types/starWars/films";
-import { getStarWarsData } from "../services/fetch";
-import { useTheme } from "react-native-paper";
+import React from "react";
+import { StyleSheet, ScrollView } from "react-native";
+import ImgPicker from "../components/ImgPicker";
+import { ImgPickerType } from "../types/common";
 
-export default function TabOneScreen() {
-  const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [films, setFilms] = useState<Array<FilmData>>([]);
-  const { colors } = useTheme();
-
-  useEffect(() => {
-    getStarWarsData(
-      "https://swapi.dev/api/films",
-      setFilms,
-      setError,
-      setLoading
-    );
-  }, []);
-
+export default function TabOneScreen(): JSX.Element {
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        {isLoading && <Text>Loading...</Text>}
-        {films && films.map((film) => <Film key={film.title} film={film} />)}
-        <Text style={{ color: colors.error }}>{error}</Text>
-      </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <ImgPicker type={ImgPickerType.AUTOTAG} title="Image Auto Tagger" />
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
   },
 });
